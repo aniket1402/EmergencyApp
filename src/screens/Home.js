@@ -3,6 +3,8 @@ import MapView, { Marker } from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
 import * as Permissions from "expo-permissions";
 import * as Location from "expo-location";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default class Home extends Component {
     state = {
@@ -34,7 +36,7 @@ export default class Home extends Component {
         }
 
         let location = await Location.getCurrentPositionAsync({});
-        console.log(location);
+        // console.log(location);
         this.setState({ locationResult: JSON.stringify(location), location });
     };
 
@@ -68,6 +70,14 @@ export default class Home extends Component {
                     <View style={styles.textWrapper}>
                         <Text style={styles.text}>You Are Safe!!!</Text>
                     </View>
+                    <TouchableOpacity
+                        style={styles.textWrapperEmer}
+                        onPress={() =>
+                            this.props.navigation.navigate("EMERGENCY")
+                        }
+                    >
+                        <Text style={styles.textEmer}>Emergency</Text>
+                    </TouchableOpacity>
                 </View>
 
                 {/* <Text style={{zIndex: 5044}}>
@@ -84,6 +94,11 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         // marginTop: 60,
     },
+    textEmer: {
+        fontSize: 40,
+        fontWeight: "bold",
+        color: "white",
+    },
     textWrapper: {
         position: "absolute",
         width: "100%",
@@ -91,8 +106,14 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(0, 0, 0, 0.15)",
         borderRadius: 50,
     },
+    textWrapperEmer: {
+        width: "100%",
+        alignItems: "center",
+        backgroundColor: "rgba(222, 55, 55, 1)",
+        height: "7%",
+    },
     mapStyle: {
         width: "100%",
-        height: "100%",
+        height: "93%",
     },
 });

@@ -16,7 +16,7 @@ import Signup from "./src/screens/Signup";
 
 // export default class App extends Component {
 //     render() {
-//         return <Help />;
+//         return <LoggedInTabNavigator />;
 //     }
 // }
 

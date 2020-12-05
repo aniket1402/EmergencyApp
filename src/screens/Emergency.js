@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import MapView, { Marker, Polygon } from "react-native-maps";
 import { StyleSheet, Text, View } from "react-native";
 import { API_KEY } from "../../API";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Emergency = () => {
+const Emergency = (props) => {
     // global. x;
     const currLat = 29.97519;
     const currLng = 76.844;
@@ -30,8 +31,8 @@ const Emergency = () => {
             setData0(hospitals.results[0].geometry.location);
             setData1(hospitals.results[10].geometry.location);
             setData2(hospitals.results[1].geometry.location);
-            setData3(hospitals.results[6].geometry.location);
-            setData4(hospitals.results[2].geometry.location);
+            setData3(hospitals.results[9].geometry.location);
+            setData4(hospitals.results[8].geometry.location);
             // console.log(x)
         } catch (err) {
             console.log("Error fetching data-----------", err);
@@ -122,11 +123,7 @@ const Emergency = () => {
 
     return (
         <View>
-            <View style={styles.main}>
-                <Text style={styles.text}>Stay Calm</Text>
-                <Text style={styles.text}>Help is on the way</Text>
-            </View>
-            <View style={styles.container}>
+            <View>
                 <MapView
                     region={{
                         latitude: currLat,
@@ -177,6 +174,16 @@ const Emergency = () => {
                         title="Help Center"
                     />
                 </MapView>
+                <View style={styles.textWrapper}>
+                    <Text style={styles.text}>Stay Calm</Text>
+                    <Text style={styles.text}>Help is on the way</Text>
+                </View>
+                <TouchableOpacity
+                    style={styles.textWrapperEmer}
+                    onPress={() => props.navigation.navigate("HELP")}
+                >
+                    <Text style={styles.textEmer}>Emergency Contacts</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -185,26 +192,30 @@ const Emergency = () => {
 const styles = StyleSheet.create({
     text: {
         fontSize: 40,
-        fontWeight: "900",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
+        fontWeight: "bold",
+        // marginTop: 60,
     },
-    main: {
-        marginTop: 20,
-        marginBottom: 50,
+    textEmer: {
+        fontSize: 40,
+        fontWeight: "bold",
+        color: "white",
     },
-    container: {
-        margin: 20,
-        backgroundColor: "#fff",
+    textWrapper: {
+        position: "absolute",
+        width: "100%",
         alignItems: "center",
-        justifyContent: "center",
-        borderColor: "black",
-        borderWidth: 5,
+        backgroundColor: "rgba(0, 0, 0, 0.15)",
+        borderRadius: 50,
     },
     mapStyle: {
-        width: 310,
-        height: 330,
+        width: "100%",
+        height: "79%",
+    },
+    textWrapperEmer: {
+        width: "100%",
+        alignItems: "center",
+        backgroundColor: "rgba(235, 113, 82, 1)",
+        height: "30%",
     },
 });
 

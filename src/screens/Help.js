@@ -64,7 +64,7 @@ const Help = ({ navigation }) => {
                     </View>
                 </View>
             </View>
-            <View style={{ marginTop: 30, marginHorizontal: 30 }}>
+            {/* <View style={{ marginTop: 30, marginHorizontal: 30 }}>
                 <Button
                     title="Emergency"
                     color={colors.green01}
@@ -74,7 +74,7 @@ const Help = ({ navigation }) => {
                         })
                     }
                 />
-            </View>
+            </View> */}
         </View>
     );
 };
