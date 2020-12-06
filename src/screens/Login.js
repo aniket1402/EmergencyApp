@@ -99,7 +99,7 @@ const Login = (props) => {
     };
 
     const showNotification = formValid ? false : true;
-    const background = formValid ? colors.green01 : colors.darkOrange;
+    const background = formValid ? colors.darkBack : colors.darkOrange;
 
     return (
         <KeyboardAvoidingView
@@ -112,9 +112,9 @@ const Login = (props) => {
                     <InputField
                         labelText="EMAIL ADDRESS"
                         labelTextSize={14}
-                        labelColor={colors.white}
-                        textColor={colors.white}
-                        bottomBorderColor={colors.white}
+                        labelColor={colors.darkText}
+                        textColor={colors.darkText}
+                        bottomBorderColor={colors.darkText}
                         inputType="email"
                         customStyle={{ marginBottom: 30 }}
                         onChangeText={handleEmailChange}
@@ -124,9 +124,9 @@ const Login = (props) => {
                     <InputField
                         labelText="PASSWORD"
                         labelTextSize={14}
-                        labelColor={colors.white}
-                        textColor={colors.white}
-                        bottomBorderColor={colors.white}
+                        labelColor={colors.darkText}
+                        textColor={colors.darkText}
+                        bottomBorderColor={colors.darkText}
                         inputType="password"
                         customStyle={{ marginBottom: 30 }}
                         onChangeText={handlePasswordChange}
@@ -161,11 +161,11 @@ Login["navigationOptions"] = (props) => ({
                 props.navigation.navigate("ForgotPassword")
             }
             location="right"
-            color={colors.white}
+            color={colors.darkText}
             text="Forgot Password?"
         />
     ),
-    headerTintColor: colors.white,
+    headerTintColor: colors.darkText,
 });
 
 const styles = StyleSheet.create({
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     },
     loginHeader: {
         fontSize: 30,
-        color: colors.white,
+        color: colors.darkText,
         fontWeight: "300",
         marginBottom: 40,
     },

@@ -1,81 +1,143 @@
-import React from "react";
-import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import {
+    View,
+    Text,
+    StyleSheet,
+    Button,
+    TouchableOpacity,
+    ScrollView,
+    TextInput,
+} from "react-native";
 import { withNavigation } from "react-navigation";
-import Emergency from "./Emergency";
-import PhoneCall from "./PhoneCall";
 import colors from "../styles/colors";
+import PhoneCall from "./PhoneCall";
 
 const Help = ({ navigation }) => {
+    const [mobileNumber1, setMobileNumber1] = useState("");
+    const [mobileNumber2, setMobileNumber2] = useState("");
+    const [mobileNumber3, setMobileNumber3] = useState("");
+    const [name1, setname1] = useState("");
+    const [name2, setname2] = useState("");
+    const [name3, setname3] = useState("");
+    const [Number1, setNumber1] = useState("");
+    const [Number2, setNumber2] = useState("");
+    const [Number3, setNumber3] = useState("");
     return (
-        <View>
+        <ScrollView>
             <View style={{ marginBottom: 20, marginRight: 10, marginLeft: 10 }}>
-                <View style={styles.wrapper}>
-                    <View style={styles.wrapper2}>
-                        <View style={{ flexGrow: 1 }}>
-                            <Text style={styles.text1}>Fortis Hospital</Text>
-                            <Text style={styles.text2}>011-27637810</Text>
-                        </View>
-                        <View style={{ display: "flex" }}>
-                            <View>
-                                <PhoneCall contactNo={1234567890} />
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.wrapper}>
-                    <View style={styles.wrapper2}>
-                        <View style={{ flexGrow: 1 }}>
-                            <Text style={styles.text1}>Max Hospital</Text>
-                            <Text style={styles.text2}>011-38735282</Text>
-                        </View>
-                        <View style={{ display: "flex" }}>
-                            <View>
-                                <PhoneCall contactNo={1234567890} />
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.wrapper}>
-                    <View style={styles.wrapper2}>
-                        <View style={{ flexGrow: 1 }}>
-                            <Text style={styles.text1}>Police Station</Text>
-                            <Text style={styles.text2}>011-27453829</Text>
-                        </View>
-                        <View style={{ display: "flex" }}>
-                            <View>
-                                <PhoneCall contactNo={1234567890} />
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.wrapper}>
-                    <View style={styles.wrapper2}>
-                        <View style={{ flexGrow: 1 }}>
-                            <Text style={styles.text1}>
-                                Emergency Contact 1 - 'Papa'
+                <ScrollView>
+                    <View style={styles.container}>
+                        <View style={styles.components}>
+                            <Text style={styles.title}>
+                                Emergency Contact 1
                             </Text>
-                            <Text style={styles.text2}>9953785220</Text>
+                            <TouchableOpacity>
+                                <PhoneCall contactNo={Number1} />
+                            </TouchableOpacity>
                         </View>
-                        <View style={{ display: "flex" }}>
-                            <View>
-                                <PhoneCall contactNo={1234567890} />
-                            </View>
-                        </View>
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: "gray",
+                                borderWidth: 0.4,
+                                paddingLeft: 10,
+                            }}
+                            onChangeText={(text) => setname1(text)}
+                            value={name1}
+                        />
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: "gray",
+                                borderWidth: 0.4,
+                                paddingLeft: 10,
+                            }}
+                            onChangeText={(text) => setMobileNumber1(text)}
+                            value={mobileNumber1}
+                        />
+                        <Button
+                            title="Save"
+                            onPress={() => setNumber1(mobileNumber1)}
+                        />
                     </View>
-                </View>
+                    <View style={styles.container}>
+                        <View style={styles.components}>
+                            <Text style={styles.title}>
+                                Emergency Contact 2
+                            </Text>
+                            <TouchableOpacity>
+                                <PhoneCall contactNo={Number2} />
+                            </TouchableOpacity>
+                        </View>
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: "gray",
+                                borderWidth: 0.4,
+                                paddingLeft: 10,
+                            }}
+                            onChangeText={(text) => setname2(text)}
+                            value={name2}
+                        />
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: "gray",
+                                borderWidth: 0.4,
+                                paddingLeft: 10,
+                            }}
+                            onChangeText={(text) => setMobileNumber2(text)}
+                            value={mobileNumber2}
+                        />
+                        <Button
+                            title="Save"
+                            onPress={() => setNumber2(mobileNumber2)}
+                        />
+                    </View>
+                    <View style={styles.container}>
+                        <View style={styles.components}>
+                            <Text style={styles.title}>
+                                Emergency Contact 3
+                            </Text>
+                            <TouchableOpacity>
+                                <PhoneCall contactNo={Number3} />
+                            </TouchableOpacity>
+                        </View>
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: "gray",
+                                borderWidth: 0.4,
+                                paddingLeft: 10,
+                            }}
+                            onChangeText={(text) => setname3(text)}
+                            value={name3}
+                        />
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: "gray",
+                                borderWidth: 0.4,
+                                paddingLeft: 10,
+                            }}
+                            onChangeText={(text) => setMobileNumber3(text)}
+                            value={mobileNumber3}
+                        />
+                        <Button
+                            title="Save"
+                            onPress={() => setNumber3(mobileNumber3)}
+                        />
+                    </View>
+                </ScrollView>
             </View>
-            {/* <View style={{ marginTop: 30, marginHorizontal: 30 }}>
-                <Button
-                    title="Emergency"
-                    color={colors.green01}
-                    onPress={() =>
-                        navigation.navigate("Emergency", {
-                            screen: "Emergency",
-                        })
-                    }
-                />
-            </View> */}
-        </View>
+            <View
+                style={{
+                    marginTop: 30,
+                    marginHorizontal: 30,
+                    marginBottom: 30,
+                }}
+            ></View>
+        </ScrollView>
     );
 };
 
@@ -104,6 +166,22 @@ const styles = StyleSheet.create({
         marginTop: 30,
         backgroundColor: colors.green01,
         color: colors.green01,
+    },
+    components: {
+        flex: 1,
+        justifyContent: "space-between",
+        flexDirection: "row",
+        borderColor: "#f4511e",
+        borderWidth: 3,
+        padding: 10,
+        marginBottom: 10,
+    },
+    container: {
+        margin: 10,
+    },
+    title: {
+        fontSize: 25,
+        fontWeight: "bold",
     },
 });
 

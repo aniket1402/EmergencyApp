@@ -3,6 +3,7 @@ import MapView, { Marker, Polygon } from "react-native-maps";
 import { StyleSheet, Text, View } from "react-native";
 import { API_KEY } from "../../API";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as SMS from "expo-sms";
 
 const Emergency = (props) => {
     // global. x;
@@ -33,6 +34,26 @@ const Emergency = (props) => {
             setData2(hospitals.results[1].geometry.location);
             setData3(hospitals.results[9].geometry.location);
             setData4(hospitals.results[8].geometry.location);
+            // setData0({
+            //     lat: 29.9739549,
+            //     lng: 76.8425455,
+            // });
+            // setData1({
+            //     lat: 29.9711783,
+            //     lng: 76.8442121,
+            // });
+            // setData2({
+            //     lat: 29.9725732,
+            //     lng: 76.8431573,
+            // });
+            // setData3({
+            //     lat: 29.9713731,
+            //     lng: 76.84288839999999,
+            // });
+            // setData4({
+            //     lat: 29.971388,
+            //     lng: 76.843222,
+            // });
             // console.log(x)
         } catch (err) {
             console.log("Error fetching data-----------", err);
@@ -106,19 +127,18 @@ const Emergency = (props) => {
     const state = {
         coordinates1: [
             { name: "1", latitude: data0.lat, longitude: data0.lng },
-            { name: "2", latitude: data1.lat, longitude: data1.lng },
             { name: "3", latitude: data2.lat, longitude: data2.lng },
-            { name: "4", latitude: data3.lat, longitude: data3.lng },
+            { name: "2", latitude: data1.lat, longitude: data1.lng },
             { name: "5", latitude: data4.lat, longitude: data4.lng },
+            { name: "4", latitude: data3.lat, longitude: data3.lng },
         ],
-        coordinates2: [
-            { name: "1", latitude: 37.8025259, longitude: -122.4351431 },
-            { name: "2", latitude: 37.7946386, longitude: -122.421646 },
-            { name: "3", latitude: 37.7665248, longitude: -122.4165628 },
-            { name: "4", latitude: 37.7834153, longitude: -122.4527787 },
-            { name: "5", latitude: 37.7948105, longitude: -122.4596065 },
-            { name: "6", latitude: 37.78825, longitude: -122.4324 },
-        ],
+    };
+
+    const [mobileNumber, setMobileNumber] = useState("9953902119");
+    const [bodySMS, setBodySMS] = useState("Help me");
+
+    const initiateSMS = () => {
+        SMS.sendSMSAsync([mobileNumber], bodySMS);
     };
 
     return (
@@ -178,12 +198,20 @@ const Emergency = (props) => {
                     <Text style={styles.text}>Stay Calm</Text>
                     <Text style={styles.text}>Help is on the way</Text>
                 </View>
-                <TouchableOpacity
-                    style={styles.textWrapperEmer}
-                    onPress={() => props.navigation.navigate("HELP")}
-                >
-                    <Text style={styles.textEmer}>Emergency Contacts</Text>
-                </TouchableOpacity>
+                <View style={styles.textWrapperButtons}>
+                    <TouchableOpacity
+                        style={styles.textWrapperEmer}
+                        onPress={() => props.navigation.navigate("HELP")}
+                    >
+                        <Text style={styles.textEmer}>Emergency Contacts</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.textWrapperSms}
+                        onPress={initiateSMS}
+                    >
+                        <Text style={styles.textEmer}>Send SMS</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     );
@@ -196,9 +224,10 @@ const styles = StyleSheet.create({
         // marginTop: 60,
     },
     textEmer: {
-        fontSize: 40,
+        fontSize: 30,
         fontWeight: "bold",
         color: "white",
+        margin: 10,
     },
     textWrapper: {
         position: "absolute",
@@ -209,13 +238,19 @@ const styles = StyleSheet.create({
     },
     mapStyle: {
         width: "100%",
-        height: "79%",
+        height: "98%",
+    },
+    textWrapperButtons: {
+        flex: 1,
+        flexDirection: "row",
     },
     textWrapperEmer: {
-        width: "100%",
-        alignItems: "center",
         backgroundColor: "rgba(235, 113, 82, 1)",
-        height: "30%",
+        width: "200%",
+    },
+    textWrapperSms: {
+        backgroundColor: "rgba(18, 190, 224, 1)",
+        width: "200%",
     },
 });
 

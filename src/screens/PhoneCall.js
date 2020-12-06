@@ -1,21 +1,23 @@
 import React, { Component } from "react";
-import {Linking,Platform,TouchableOpacity,Text} from "react-native";
-import PropTypes from 'prop-types';
-import colors from '../styles/colors';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Linking, Platform, TouchableOpacity, Text } from "react-native";
+import PropTypes from "prop-types";
+import colors from "../styles/colors";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class PhoneCall extends Component {
-
     dialCall = (number) => {
-        let phoneNumber = '';
-        if (Platform.OS === 'android') { phoneNumber = `tel:${number}`; }
-        else {phoneNumber = `telprompt:${number}`; }
+        let phoneNumber = "";
+        if (Platform.OS === "android") {
+            phoneNumber = `tel:${number}`;
+        } else {
+            phoneNumber = `telprompt:${number}`;
+        }
         Linking.openURL(phoneNumber);
     };
 
-    render(){
+    render() {
         const { contactNo } = this.props;
-        return(
+        return (
             <TouchableOpacity
                 style={{
                     // position: 'relative',
@@ -24,19 +26,23 @@ export default class PhoneCall extends Component {
                     backgroundColor: colors.green01,
                     alignItems: "center",
                     justifyContent: "center",
-                    borderRadius: 50,
-                    paddingTop: 13,
-                    paddingBottom: 13,
-                    paddingLeft: 15,
-                    paddingRight: 15
+                    borderRadius: 30,
+                    paddingTop: 8,
+                    paddingBottom: 8,
+                    paddingLeft: 10,
+                    paddingRight: 10,
                 }}
-                onPress={()=>{this.dialCall(contactNo)}}
+                onPress={() => {
+                    this.dialCall(contactNo);
+                }}
             >
-                <Icon name="phone" style={{ color: colors.white,fontSize: 25}}/>
+                <Icon
+                    name="phone"
+                    style={{ color: colors.white, fontSize: 25 }}
+                />
             </TouchableOpacity>
-        )
+        );
     }
-
 }
 
 PhoneCall.propTypes = {

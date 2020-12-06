@@ -1,26 +1,29 @@
 {
-  "expo": {
-    "name": "lifeLine",
-    "slug": "lifeLine",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "expo": {
+        "name": "lifeLine",
+        "slug": "lifeLine",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "userInterfaceStyle": "automatic",
+        "ios": {
+            "userInterfaceStyle": "light",
+            "supportsTablet": true
+        },
+        "android": {
+            "userInterfaceStyle": "dark"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": ["**/*"],
+        "web": {
+            "favicon": "./assets/favicon.png"
+        }
     }
-  }
 }
